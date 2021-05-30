@@ -71,7 +71,7 @@ export default {
             employee: {},
             id:null,
             isLoading: true,
-             is_loading:false
+            is_loading:false
         }
     },
     methods: {

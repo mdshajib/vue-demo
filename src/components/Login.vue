@@ -18,7 +18,7 @@
             <div class="col-12">
                 <button type="submit" class="btn btn-primary form-control">
                     <span v-if="is_loading"><i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> Loading...</span>
-                    <span v-else>Sign in</span>
+                    <span v-else><i class="fas fa-sign-in-alt"></i> Sign in</span>
                 </button>
             </div>
         </form>

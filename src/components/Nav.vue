@@ -10,14 +10,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link class="nav-link active" to="/">Home</router-link>
+              <router-link class="nav-link" to="/"><i class="fas fa-home"></i> Home</router-link>
             </li>
 
           </ul>
           <div class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                 <router-link class="nav-link logout" aria-current="page" to="/signin">Sign In</router-link>
+                 <router-link class="nav-link logout" aria-current="page" to="/signin"><i class="fas fa-sign-in-alt"></i> Sign In</router-link>
               </li>
 
             </ul>
@@ -35,23 +35,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link class="nav-link active" to="/">Home</router-link>
+              <router-link class="nav-link" to="/"><i class="fas fa-home"></i> Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/employee">Employee List</router-link>
+              <router-link class="nav-link" to="/employee"><i class="fas fa-users"></i> Employee List</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/employee/create">Create Employee</router-link>
+              <router-link class="nav-link" to="/employee/create"><i class="fas fa-user-plus"></i> Create Employee</router-link>
             </li>
             <li class="nav-item">
-               <router-link class="nav-link" to="/employee/search">Search</router-link>
+               <router-link class="nav-link" to="/employee/search"><i class="fab fa-searchengin"></i> Search</router-link>
             </li>
 
           </ul>
           <div class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link logout" href="#" @click="handleSignout">Sign out</a>
+                <a class="nav-link logout" href="/signin" @click="handleSignout"><i class="fas fa-sign-out-alt"></i> Sign out</a>
               </li>
 
             </ul>
@@ -94,3 +94,14 @@ export default {
    }
 }
 </script>
+
+<style>
+ul li{
+  border-right: 1px solid #fdfdfd8c;
+  margin: 3px;
+  padding: 2px;
+}
+ul li:last-child{
+  border-right: 0;
+  }
+</style>
