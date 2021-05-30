@@ -107,15 +107,27 @@ export default {
             }
         },
         async deleteEmployee(id) {
-            let index = this.employees.findIndex(employee => employee.id === id)
-            let response = await axios.delete('employee/' + id)
-            if(response.data.status){
-                this.$toastr.info(response.data.status_message, 'Delete');
-                this.employees.splice(index, 1)
-            }else{
-                this.$toastr.error(response.data.status_message, 'Error');
-            }
-            
+            this.$swal({
+                title: 'Are you sure?',
+                text: 'You can\'t revert your action',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes Delete it!',
+                cancelButtonText: 'No, Keep it!',
+                showCloseButton: true,
+                showLoaderOnConfirm: true
+            }).then(async (result) => {
+                if(result.value) {
+                    let index = this.employees.findIndex(employee => employee.id === id)
+                    let response = await axios.delete('employee/' + id)
+                    if(response.data.status){
+                        this.employees.splice(index, 1)
+                        this.$swal('Deleted', response.data.status_message, 'success')
+                    }else{
+                        this.$toastr.error(response.data.status_message, 'Error');
+                    }
+                }
+            }) 
         },
         async filterEmployee() {
             const response = await axios.get('employee?designation='+this.designation + '&department='+this.department);
