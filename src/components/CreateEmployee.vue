@@ -47,7 +47,7 @@
                                 <input type="file" class="form-control" @change="onFileSelected" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                             </div>
 
-                            <div class="form-floating mb-1">
+                            <div class="form-floating mb-1 mt-2">
                                 <button class="btn btn-success" @click.prevent="handleSubmit">
                                     
                                     <span v-if="is_loading"><i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> Loading...</span>
@@ -99,7 +99,7 @@ export default {
 
             if(response.data.status){
                 this.is_loading = false
-                console.log('Inserted');
+                this.$toastr.success('New Employee created', 'Success');
             }
         },
         onFileSelected(event) {
@@ -113,8 +113,7 @@ export default {
         }else{
             this.$router.push('/signin')
         }
-        
-  }
+    }
 }
 </script>
 

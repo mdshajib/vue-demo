@@ -48,7 +48,10 @@
                                     </div>
                                 </div>
                                 <div class="mt-1">
-                                    <button class="btn btn-info" @click="handleUpdate">Update</button>
+                                    <button class="btn btn-info" @click="handleUpdate">
+                                        <span v-if="is_loading"><i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> Loading...</span>
+                                        <span v-else>Update</span>
+                                    </button>
                                     <router-link class="btn btn-primary profile-button ml" aria-current="page" :to="{path:'/employee/'+employee.id}">Back</router-link>
                                 </div>
                         </div>
@@ -68,6 +71,7 @@ export default {
             employee: {},
             id:null,
             isLoading: true,
+             is_loading:false
         }
     },
     methods: {
@@ -81,9 +85,15 @@ export default {
             }
         },
        async handleUpdate(){
+           this.is_loading = true
            const response = await axios.put('employee/'+this.id,this.employee)
-            if(response && response.data.status){
-                console.log( response.data.data)
+           
+            if(response.data.status){
+                this.is_loading = false
+                this.$toastr.success(response.data.status_message, 'Update');
+            }else{
+                this.is_loading = false
+                this.$toastr.error(response.data.status_message, 'Error');
             }
         }
     },

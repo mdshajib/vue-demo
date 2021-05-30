@@ -101,12 +101,21 @@ export default {
                 if(response.data.status){
                     this.employees = response.data.data;
                 }
+                else{
+                    this.$toastr.warning(response.data.status_message, 'warning');
+                }
             }
         },
         async deleteEmployee(id) {
             let index = this.employees.findIndex(employee => employee.id === id)
-            await axios.delete('employee/' + id)
-            this.employees.splice(index, 1)
+            let response = await axios.delete('employee/' + id)
+            if(response.data.status){
+                this.$toastr.info(response.data.status_message, 'Delete');
+                this.employees.splice(index, 1)
+            }else{
+                this.$toastr.error(response.data.status_message, 'Error');
+            }
+            
         },
         async filterEmployee() {
             const response = await axios.get('employee?designation='+this.designation + '&department='+this.department);
@@ -115,6 +124,9 @@ export default {
                 this.isLoading = false;
                 if(response.data.status){
                     this.employees = response.data.data;
+                }
+                else{
+                    this.$toastr.warning(response.data.status_message, 'warning');
                 }
             }
         }   
