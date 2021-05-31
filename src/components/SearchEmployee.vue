@@ -52,7 +52,7 @@
                         <div class="col-md-3 details">
                             <span class="title txt"><i class="far fa-address-card"></i> {{employee.address }}</span>
                         </div>
-                        <div class="col-md-2 action">
+                        <div class="col-md-1 action">
                             <div class="title txt">
                             <ul class="list-unstyled mb-0 d-flex justify-content-end">
                                 <li>

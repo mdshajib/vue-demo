@@ -51,7 +51,7 @@
           <div class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link logout" href="/signin" @click="handleSignout"><i class="fas fa-sign-out-alt"></i> Sign out</a>
+                <p class="nav-link logout" @click="handleSignout"><i class="fas fa-sign-out-alt"></i> Sign out</p>
               </li>
 
             </ul>
@@ -62,6 +62,7 @@
 </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
    name:"Nav",
    data() {
@@ -70,14 +71,16 @@ export default {
       }
    },
    methods: {
-     handleSignout() {
-       console.log('Signout')
-       let token = localStorage.getItem('access_token');
-       if(token){
-        this.isLogin = false
-        localStorage.removeItem('access_token');
-        this.$router.push('signin');
-      }
+    async handleSignout() {
+        const response = await axios.post('logout');
+        if(response && response.data.status){
+          let token = localStorage.getItem('access_token');
+          if(token){
+            this.isLogin = false
+            localStorage.removeItem('access_token');
+            this.$router.push('signin');
+          }
+        }
      }
    },
    created(){
@@ -103,5 +106,9 @@ ul li{
 }
 ul li:last-child{
   border-right: 0;
+  }
+  .logout{
+    cursor: pointer;
+    font-weight:bold;
   }
 </style>
